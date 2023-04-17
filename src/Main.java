@@ -8,7 +8,7 @@ public class Main {
         System.out.println(calc(text));
     }
     public static String calc(String input) throws Exception {
-        String res = null;
+        String res;
         String [] newText = input.split(" ");
         if (newText.length < 3) {
             throw new Exception("Строка не является математической операцией");
@@ -22,7 +22,7 @@ public class Main {
         // two
 
         // first
-        int first = 0;
+        int first;
         boolean firstRoman = false;
         try {
             first = Integer.parseInt(newText[0]);
@@ -33,7 +33,7 @@ public class Main {
         // first
 
         // three
-        int three = 0;
+        int three;
         boolean threeRoman = false;
         try {
             three = Integer.parseInt(newText[2]);
@@ -51,23 +51,14 @@ public class Main {
             throw new Exception("Калькулятор должен принимать на вход числа от 1 до 10 включительно, не более.");
         }
 
-        switch (two) {
-            case "+":
-                res = String.valueOf(first+three);
-                break;
-            case "-":
-                res = String.valueOf(first-three);
-                break;
-            case "/":
-                res = String.valueOf(first/three);
-                break;
-            case "*":
-                res = String.valueOf(first*three);
-                break;
-            default:
-                throw new Exception("Не найдено такой логической операции (" + two + ")");
-        }
-        if (firstRoman == true) {
+        res = switch (two) {
+            case "+" -> String.valueOf(first + three);
+            case "-" -> String.valueOf(first - three);
+            case "/" -> String.valueOf(first / three);
+            case "*" -> String.valueOf(first * three);
+            default -> throw new Exception("Не найдено такой логической операции (" + two + ")");
+        };
+        if (firstRoman) {
             int a = Integer.parseInt(res);
             if (a < 0) {
                 throw new Exception("В римской системе нет отрицательных чисел");
