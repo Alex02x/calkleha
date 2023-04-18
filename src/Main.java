@@ -20,7 +20,12 @@ public class Main {
         // two
         String two = newText[1];
         // two
-
+        if (newText[0].contains("IIII")) {
+            throw new Exception("Одного из введеных вами чисел не существует: " + newText[0]);
+        }
+        if (newText[2].contains("IIII")) {
+            throw new Exception("Одного из введеных вами чисел не существует: " + newText[2]);
+        }
         // first
         int first;
         boolean firstRoman = false;
@@ -42,7 +47,6 @@ public class Main {
             threeRoman = true;
         }
         // three
-
         if ((firstRoman && !threeRoman) || (!firstRoman && threeRoman)) {
             throw new Exception("Используются одновременно разные системы счисления");
         }
@@ -96,8 +100,8 @@ class ArabicToRoman {
     }
 
     static String intToRoman(int a) {
-        String romans[] = {"I", "IV", "V", "IX", "X", "L", "C"};
-        int arabics[] = {1, 4, 5, 9, 10, 50, 100};
+        String[] romans = {"I", "IV", "V", "IX", "X", "XL", "L", "LX", "C", "D"};
+        int[] arabics = {1, 4, 5, 9, 10, 40, 50, 60, 100, 500};
         String res = "";
         int n = a;
         while (n > 0) {
